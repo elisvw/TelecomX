@@ -180,5 +180,25 @@ ax.spines['right'].set_visible(False)
 
 plt.show()
 
-"""# Relatório Final"""
+"""# Relatório Final
 
+### Introdução
+O objetivo da análise dos dados da empresa TelecomX é compreender o porquê da empresa estar enfrentando tantas evasões de clientes. Dessa forma, as análises serão em torno da quantidade de clientes que cancelaram seu contrato em relação a alguma variável específica, como por exemplo o Tempo de Contrato desses clientes. Com o objetivo final de obter resultados que ajudem a empresa a resolver esse problema.
+
+### Limpeza e Tratamento de Dados
+A base de dados da TelecomX estava em um arquivo json, que foi lido pela biblioteca Pandas e normalizado com a função json_normalize (para que cada categoria ficasse separada adequadamente). Após isso, os dados foram tratados, primeiro analisando se os seus tipos estavam coerentes com os dados representados. Por exemplo a coluna 'account.Charges.Total' estava como 'object', então foi tratada para mostrar valores do tipo 'float64'. Além disso, os valores nulos foram emovidos para evitar interferências nas análises.
+
+### Análise Exploratória de Dados
+* A análise exploratória foi centrada na evasão dos clientes, observando seu total e sua relação com diferentes categorias.
+Nos gráficos da 'Evasão Total' nota-se que muitos clientes ainda estão ativos na empresa (74.2%). Porém, devemos considerar os 25.8% que saíram.
+* Assim, começando a análise da evasão por categorias, temos primeiro o gênero dos clientes, dos quais não inteferiram na análise, pois possuem quase os mesmos valores: feminino = 939 e masculino = 930;
+* Em seguida, obtem-se o gráfico 'Evasão X Tipo de Contrato', o qual mostra que a grande maioria dos clientes que cancelaram tinham o contrato mensal, totalizando 1655;
+* Já com o método de pagamento em 'Evasão X Método de Pagamento', observa-se que os clientes que mais evasaram foram aqueles que faziam pagamentos via cheque eletrônico, com um total de 1071;
+* O próximo gráfico, de 'Evasão X Tipo de Serviço de Internet', nos faz refletir o porquê tantos clientes que usavam a fibra óptica resolveram sair, com um total de 1297 deles;
+* Por fim, visualiza-se em 'Evasão X Tempo de Contrato' que os usuários dos serviços da TelecomX cancelam logo nos primeiros meses de uso, tendo um número signiificativo de mais de 350 evasões apenas no mês 1 de sua assinatura.
+
+### Conclusões e Insights
+Com base nas análises, concluí-se que a empresa deve se atentar em como seu serviço está impactando seus usuários nos primeiros meses de uso, além de compreender os motivos pelos quais tantos clientes que optaram pela fibra ótica saíram (seria má qualidade?, manutenção?...).
+
+Portanto, sugere-se que a TelecomX tenha um serviço de feedbacks, que permita aos usuários avaliarem sua experiência mensalmente, com algumas perguntas do tipo "O que menos gostou da empresa até agora?", "Como você avalia o seu tipo de serviço?", "O que poderíamos fazer para melhorar a sua experiência?", entre outras. Para que assim a empresa possa agir de forma personalizada, aumentando a satisfação dos clientes.
+"""
