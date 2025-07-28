@@ -13,6 +13,7 @@ import pandas as pd
 import requests
 import json
 import numpy as np
+import matplotlib.pyplot as plt
 
 """# Extração"""
 
@@ -59,7 +60,125 @@ df.head()
 
 """# Carga e Análise"""
 
+df.describe()
 
+"""## Análises de Evasão
+
+#### Evasão Total
+"""
+
+churn_counts = df['Churn'].value_counts()
+labels = ['Permaneceu', 'Saiu']
+
+fig, axs = plt.subplots(1, 2, figsize=(15, 5))
+
+axs[0].bar(labels, churn_counts, color=['mediumaquamarine', 'lightcoral'])
+axs[0].set_title('Total de Evasão de Clientes')
+axs[0].set_xlabel('Situação')
+axs[0].set_ylabel('Nº de Clientes')
+
+axs[0].spines['top'].set_visible(False)
+axs[0].spines['right'].set_visible(False)
+
+axs[1].pie(churn_counts, labels=labels, autopct='%1.1f%%', colors=['mediumaquamarine', 'lightcoral'], startangle=90)
+axs[1].set_title('Percentual de Evasão de Clientes')
+axs[1].set_ylabel('')
+
+plt.show()
+
+"""#### Evasão X Gênero"""
+
+evasao_genero_agrupados = df.groupby('customer.gender')['Churn'].sum()
+
+fig, ax = plt.subplots(figsize=(8,4))
+
+barras = ax.bar(evasao_genero_agrupados.index, evasao_genero_agrupados.values, color=['orchid', 'teal'])
+
+ax.bar_label(barras, color='gray')
+
+ax.set_title('Evasão de Clientes por Gênero', fontsize=18, loc='left')
+ax.set_xlabel('Gênero', fontsize=12)
+ax.set_ylabel('Evasão', fontsize=12)
+
+ax.spines['top'].set_visible(False)
+ax.spines['right'].set_visible(False)
+
+plt.show()
+
+"""#### Evasão X Tipo de Contrato"""
+
+evasao_contrato_agrupados = df.groupby('account.Contract')['Churn'].sum()
+
+fig, ax = plt.subplots(figsize=(8,4))
+
+barras = ax.bar(evasao_contrato_agrupados.index, evasao_contrato_agrupados.values, color=['plum', 'salmon', 'lightgreen'])
+
+ax.bar_label(barras, color='gray')
+
+ax.set_title('Evasão de Clientes por Tipo de Contrato', fontsize=18, loc='left')
+ax.set_xlabel('Tipo de Contrato', fontsize=12)
+ax.set_ylabel('Evasão', fontsize=12)
+
+ax.spines['top'].set_visible(False)
+ax.spines['right'].set_visible(False)
+
+plt.show()
+
+"""#### Evasão X Método de Pagamento"""
+
+evasao_pagamento_agrupados = df.groupby('account.PaymentMethod')['Churn'].sum()
+
+ordenar_evasao_pagamentos = evasao_pagamento_agrupados.sort_values()
+
+fig, ax = plt.subplots(figsize=(8,4))
+
+ax.barh(ordenar_evasao_pagamentos.index, ordenar_evasao_pagamentos.values, color = ['skyblue', 'lightcoral', 'mediumseagreen', 'gold'])
+
+ax.set_title('Evasão de Clientes por Método de Pagamento', fontsize=18, loc='left')
+
+for i, v in enumerate(ordenar_evasao_pagamentos.values):
+  ax.text(v + 20, i, str(v), color='black', fontsize=10, ha='left', va='center')
+
+ax.set_frame_on(False)
+ax.get_xaxis().set_visible(False)
+ax.tick_params(axis='both', which='both', length=0)
+
+plt.show()
+
+"""#### Evasão X Tipo de Serviço de Internet"""
+
+evasao_servico_agrupados = df.groupby('internet.InternetService')['Churn'].sum()
+
+fig, ax = plt.subplots(figsize=(8,4))
+
+barras = ax.bar(evasao_servico_agrupados.index, evasao_servico_agrupados.values, color=['plum', 'salmon', 'lightgreen'])
+
+ax.bar_label(barras, color='gray')
+
+ax.set_title('Evasão de Clientes por Tipo de Serviço de Internet', fontsize=18, loc='left')
+ax.set_xlabel('Tipo de Serviço de Internet', fontsize=12)
+ax.set_ylabel('Evasão', fontsize=12)
+
+ax.spines['top'].set_visible(False)
+ax.spines['right'].set_visible(False)
+
+plt.show()
+
+"""#### Evasão X Tempo de Contrato"""
+
+evasao_tempo_agrupados = df.groupby('customer.tenure')['Churn'].sum()
+
+fig, ax = plt.subplots(figsize=(8, 4))
+ax.plot(evasao_tempo_agrupados.index, evasao_tempo_agrupados.values, color='lightcoral', lw=3)
+
+ax.set_title('Evasão de Clientes por Tempo de Contrato', fontsize=16)
+ax.set_xlabel('Tempo de Contrato (meses)', fontsize=12)
+ax.set_ylabel('Evasão', fontsize=12)
+
+ax.spines['top'].set_visible(False)
+ax.spines['right'].set_visible(False)
+
+plt.show()
 
 """# Relatório Final"""
 
