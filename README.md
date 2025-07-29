@@ -21,12 +21,14 @@ Para esse projeto, foram utilizados o Google Colab como principal ferramenta e a
 <img src="graficos/total_evasao.png" width=550>
 <br>
 Esse gráfico aponta que a TelecomX teve uma evasão total de 25.8%
+<br>
 
 * **Evasão por Tipo de Contrato**
 <br>
 <img src="graficos/evasao_contrato.png" width=550>
 <br>
 Neste exemplo, notamos que os clientes que optaram pelo contrato mensal foram os que mais saíram da empresa.
+<br>
 
 * **Evasão por Tempo de Contrato**
 <br>
